@@ -81,4 +81,6 @@ Take absolute deviations from group mean: 10, 5, 0, 5, 10 in every group
 - If variances unequal AND group sizes unequal → consider Welch’s ANOVA.  
 - ANOVA is fairly robust with equal n, so small deviations are often okay.  
 
-Happy analyzing! 🏋️‍♂️📈
+Last Updated: December 2025
+License: The Evil Math Cat
+Contributions: Gimme me cat food damn it.
