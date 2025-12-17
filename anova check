@@ -1,83 +1,84 @@
-Checking One-Way ANOVA Assumptions by Hand: Weightlifting Example
-This guide explains how to check the three main assumptions for one-way ANOVA by hand using the same weightlifting data from before. The assumptions are:
+# 🔍 Checking One-Way ANOVA Assumptions by Hand  
+### 💪 Weightlifting Example (Max Squat in kg)
 
-Independence: Observations are independent within and between groups.
-Normality: Residuals (errors) are normally distributed.
-Homogeneity of variances (equal variances across groups).
+We’re using the same dataset (n=5 per group):  
 
-We'll use the same sample data (maximum squat in kg, n=5 per group):
+- **Group A** (mean = 110): 100, 105, 110, 115, 120  
+- **Group B** (mean = 120): 110, 115, 120, 125, 130  
+- **Group C** (mean = 130): 120, 125, 130, 135, 140  
 
-Group A: 100, 105, 110, 115, 120 (mean = 110)
-Group B: 110, 115, 120, 125, 130 (mean = 120)
-Group C: 120, 125, 130, 135, 140 (mean = 130)
+**Grand mean** = 120  
+**Within-group variance (MSW)** = 62.5  
 
-Grand mean = 120. From previous ANOVA: MSW = 62.5 (pooled within-group variance).
-Assumption 1: Independence
-This is not tested statistically by hand — it's ensured by study design.
+Let’s check the **three key assumptions** one by one! ✅
 
-Observations should be independent: no pairing, no repeated measures on the same person, random assignment/sampling.
-In our example: Assume lifters are different individuals, randomly assigned to training programs, and lifts measured independently.
-If violated (e.g., same lifter in multiple groups), ANOVA is inappropriate — use repeated-measures ANOVA instead.
+### 1️⃣ **Independence of Observations**  
+🛡️ **How to check**: This is **not tested statistically** — it’s ensured by **study design**.  
 
-If design ensures independence, assumption met.
-Assumption 2: Normality of Residuals
-Strictly, check normality of residuals (observed value - predicted value). Predicted = group mean.
-Residuals are the deviations within each group (same as used for SSW).
-All residuals (pooled, N=15):
-Group A: -10, -5, 0, +5, +10
-Group B: -10, -5, 0, +5, +10
-Group C: -10, -5, 0, +5, +10
-(The data is symmetric and patterned — residuals identical per group.)
-To check by hand:
+✅ **What we need**:  
+- Different individuals in each group  
+- Random assignment or random sampling  
+- No repeated measures on the same person  
+- No pairing across groups  
 
-Graphical (preferred for small n): Plot histogram or Q-Q plot of residuals.
-Here, residuals range from -10 to +10 in steps of 5, symmetric around 0 → looks normal (bell-shaped if histogrammed).
-No skewness or outliers.
+💡 **In our example**: We assume lifters are different people, randomly assigned to training programs, and lifts were measured independently.  
 
-Descriptive: Calculate skewness and kurtosis (should be near 0 for normal).
-Data symmetric → skewness = 0.
-Kurtosis = 0 (uniform-like in spread, but small n).
+✅ **Conclusion**: Assumption met by design.  
+⚠️ If violated → use repeated-measures ANOVA instead!
 
-Formal test: Shapiro-Wilk is powerful but requires tables/coefficients (hard by hand for n=15). For small n, visual is sufficient.
-Alternative: With such perfect symmetry and no outliers, normality is reasonable.
-Note: ANOVA robust to mild non-normality, especially equal n.
+### 2️⃣ **Normality of Residuals**  
+🔔 **What to check**: Residuals (observed − group mean) should be approximately normally distributed.  
 
+📊 **All residuals (pooled, N=15)**:  
+-10, -5, 0, +5, +10 (repeated identically in each group)  
 
-Conclusion: Assumption met.
-Assumption 3: Homogeneity of Variances (Equal Variances)
-Check if group variances are equal.
-First, calculate variance per group (s² = sum(deviations²) / (n-1)):
-Each group: deviations² = 100 + 25 + 0 + 25 + 100 = 250
-df = 4 → variance = 250 / 4 = 62.5 for each group.
-All variances exactly equal (62.5).
+✨ **By-hand checks**:  
+- **Visual** : If you made a histogram → perfect symmetric bell shape. No outliers, no skewness.  
+- **Q-Q plot** (imagined): Points would fall exactly on the straight line.  
+- **Skewness**: 0 (perfectly symmetric)  
+- **Kurtosis**: Close to 0 (normal peak and tails for this pattern)  
 
-Rule of thumb: Largest variance / smallest < 2–4 (here 1 → fine).
-Graphical: Boxplots would show similar spread.
-Formal test by hand: Levene's test (robust).
-Use absolute deviations from group mean (or median for more robustness).
-Here, absolute deviations per group (same for all): 10, 5, 0, 5, 10
-Mean absolute deviation per group = (10+5+0+5+10)/5 = 30/5 = 6
-Now treat these absolutes as new data, run one-way ANOVA on them.
-Grand mean of absolutes = 6 (all groups same).
-SSB = 0 (all group means = 6).
-F = 0 → p = 1 (not significant).
-Conclusion: No evidence against equal variances.
+📈 **Note**: For small samples, visual inspection is enough. Formal tests like Shapiro-Wilk are hard by hand.  
 
+🛡️ ANOVA is quite **robust** to mild non-normality, especially with equal group sizes.  
 
-Alternative simple test (Hartley's Fmax for equal n): max variance / min variance = 1 → not significant.
-Conclusion: Assumption clearly met.
-Overall Summary
-In this weightlifting example:
+✅ **Conclusion**: Normality assumption clearly met.
 
-Independence: Met by design.
-Normality: Met (symmetric residuals, no issues).
-Homogeneity: Met (identical variances).
+### 3️⃣ **Homogeneity of Variances (Equal Variances Across Groups)**  
+⚖️ **What to check**: All groups should have roughly the same variance.  
 
-All assumptions satisfied → standard one-way ANOVA (and post hoc tests) are appropriate.
-In real data:
+🔢 **Calculate variance per group** (s² = Σ(deviations²) / (n-1)):  
+Each group: deviations² sum to 250 → variance = 250 / 4 = **62.5**  
+→ **All three groups have exactly the same variance!**
 
-Independence: Always check design.
-Normality: Use Q-Q plots/histograms of residuals; ANOVA robust if n>10–15 per group.
-Homogeneity: If violated and unequal n, use Welch ANOVA instead.
+✅ **Quick rules of thumb**:  
+- Largest variance / smallest variance = 1 (< 2–4 → very good)  
+- Boxplots would show identical spread  
 
-For critical values (e.g., F tables, t tables), refer to a statistics textbook. Small deviations often ok due to ANOVA robustness with equal group sizes.
+🧮 **Simple formal check (Hartley’s Fmax)**:  
+Fmax = max variance / min variance = 1 → not significant  
+
+🧪 **Levene’s test by hand (robust)**:  
+Take absolute deviations from group mean: 10, 5, 0, 5, 10 in every group  
+→ Group mean of absolutes = 6 (identical)  
+→ Between-group variation = 0 → F = 0 → p = 1 (no evidence against equality)  
+
+✅ **Conclusion**: Equal variances assumption perfectly met.
+
+### 🎉 **Overall Summary**
+
+| Assumption                  | Status       | Reason                                      |
+|-----------------------------|--------------|---------------------------------------------|
+| 🛡️ Independence            | ✅ Met       | Ensured by study design                     |
+| 🔔 Normality of residuals   | ✅ Met       | Symmetric residuals, no outliers            |
+| ⚖️ Equal variances          | ✅ Met       | Identical variances across groups           |
+
+**All three assumptions are satisfied** → Standard one-way ANOVA (and follow-up post hoc tests) are perfectly appropriate here! 🚀
+
+💡 **Real-world tips**:  
+- Always verify independence from the design.  
+- For normality → plot residuals (Q-Q or histogram).  
+- If variances unequal AND group sizes unequal → consider Welch’s ANOVA.  
+- ANOVA is fairly robust with equal n, so small deviations are often okay.  
+
+Happy analyzing! 🏋️‍♂️📈
